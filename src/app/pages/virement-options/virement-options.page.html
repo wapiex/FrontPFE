@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/home">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Options de Virement</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!--<ion-button expand="full" routerLink="/initiate-single-transfer">Initiation virement unitaire</ion-button>-->
+  <ion-button *ngIf="status === 'initiateur'" expand="full" [routerLink]="['/initiate-single-transfer']">Initiation virement unitaire</ion-button>
+  <ion-button *ngIf="status === 'initiateur'" expand="full" routerLink="/initiate-multiple-transfers">Initiation virement multiple</ion-button>
+  <ion-button *ngIf="status === 'validateur'" expand="full" routerLink="/validate-transfer">Validation virement</ion-button>
+</ion-content>
+ 

@@ -1,0 +1,134 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/home">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Mes Cartes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Liste des cartes existantes -->
+  <ion-list>
+    <ion-card *ngFor="let card of cards">
+      <ion-card-header>
+        <ion-card-title>{{ card.typeCarte }} - {{ card.numCarte }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Nom: {{ card.nom }}</p>
+        <p>Prénom: {{ card.prenom }}</p>
+        <p>Date d'Expiration: {{ card.dateExpiration }}</p>
+        <p>Statut: {{ card.statut }}</p>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+  <!-- Bouton pour afficher/masquer le formulaire de demande -->
+  <ion-button expand="full" (click)="toggleForm()">
+    {{ showForm ? 'Annuler' : 'Demander une Nouvelle Carte' }}
+  </ion-button>
+
+  <!-- Formulaire de demande de carte -->
+  <ion-card *ngIf="showForm">
+    <ion-card-header>
+      <ion-card-title>Demandez une Carte</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="cardRequestForm">
+        <ion-item>
+          <ion-label position="floating">Numéro de Compte</ion-label>
+          <ion-input formControlName="NumDeCompte" type="number" ></ion-input>
+      </ion-item>      
+        <ion-item>
+          <ion-select formControlName="TypeCarte" label="Type de Carte">
+            <ion-select-option value="Visa Electron Internationale">Visa Electron Internationale</ion-select-option>
+            <ion-select-option value="MasterCard Gold Internationale">MasterCard Gold Internationale</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="Nom" type="text" label="Nom"></ion-input>
+        </ion-item>
+
+
+       
+        <ion-item>
+          <ion-input formControlName="Prenoms" type="text" label="Prénom"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="Profession" type="text" label="Profession"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="Adresse" type="text" label="Adresse"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="Ville" type="text" label="Ville"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="CodePostal" type="text" label="Code Postal"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="Telephone" type="text" label="Téléphone"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="Mobile" type="text" label="Mobile"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="TypeIdentite" type="text" label="Type d'Identité"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="NumeroIdentite" type="text" label="Numéro d'Identité"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Date de Délivrance de l'Identité</ion-label>
+          <ion-datetime formControlName="DateDelivranceIdentite"></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="RevenuMensuelNet" type="number" label="Revenu Mensuel Net"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="SoldeCompte" type="number" label="Solde Compte"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="SoldeAVA" type="number" label="Solde AVA"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="MouvementAnnuel" type="number" label="Mouvement Annuel"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-select formControlName="CotePersonalisation" label="Côte de Personnalisation">
+            <ion-select-option value="A">A</ion-select-option>
+            <ion-select-option value="B">B</ion-select-option>
+            <ion-select-option value="C">C</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="PlafondHebdoDAB" type="number" label="Plafond Hebdo DAB"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="PlafondHebdoTPE" type="number" label="Plafond Hebdo TPE"></ion-input>
+        </ion-item>
+
+        <ion-button type="submit" expand="block" (click)="submitRequest()" [disabled]="!cardRequestForm.valid">Envoyer la Demande</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

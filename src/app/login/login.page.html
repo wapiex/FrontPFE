@@ -1,0 +1,56 @@
+<!--<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-header class="centre">
+      <img src="assets/stb.png" alt="STB-LOGO">
+      <ion-card-title  ></ion-card-title>
+      <ion-card-subtitle></ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-item>
+        <ion-input placeholder="username" id="username"></ion-input>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-input placeholder="Password" type="Password" id="pass"></ion-input>
+      </ion-item>
+      <br>
+      <div style="text-align: center !important;" >
+        <ion-button (click)="LogMeIn()">login</ion-button>
+    </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>-->
+
+
+<ion-content class="ion-padding ion-text-center ion-align-items-center">
+  <div>
+    <ion-img src="assets/Logo_STB.png" class="logo clear-logo"></ion-img>
+  </div>
+
+  <ion-item lines="none" class="input-box">
+    <ion-input type="text" placeholder="Nom d'utilisateur" [(ngModel)]="login.Username"></ion-input>
+  </ion-item>
+
+  <ion-item lines="none" id="passwordItem" class="input-box">
+    <ion-input type="password" placeholder="Mot de passe" [(ngModel)]="login.Password"></ion-input>
+  </ion-item>
+
+  <ion-button expand="block" color="secondary" class="ion-margin-top" (click)="LogMeIn()">Se connecter</ion-button>
+  <!-- Section pour afficher le message d'erreur -->
+  <ion-item *ngIf="errorMessage" lines="none" color="danger">
+    <ion-label>{{ errorMessage }}</ion-label>
+  </ion-item>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="primary">
+    <ion-title>STB Bank</ion-title>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/home">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>consultation de compte </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Informations du Compte</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Nom: {{ accountInfo?.nom }}</p>
+      <p>Prénom: {{ accountInfo?.prenom }}</p>
+      <p>Type de Compte: {{ accountInfo?.typeCpt }}</p>
+      <p>Date de Création: {{ accountInfo?.dateCreation }}</p>
+      <p>Statut: {{ accountInfo?.statut }}</p>
+      <p [ngClass]="getBalanceColor(accountInfo?.solde)">
+        Solde: {{ accountInfo?.solde | currency:'EUR':'symbol-narrow' }}
+      </p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

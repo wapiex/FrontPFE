@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="header-title">
+      <img src="assets/logo.png" alt="Logo" class="header-logo">
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="welcome-card">
+    <ion-card-content>
+      <h2>Bienvenue, {{ username }}</h2>
+      <p>CLIENT CORPORATIF</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-grid class="feature-grid">
+    <ion-row>
+      <ion-col size="6" *ngFor="let feature of features">
+        <ion-card class="feature-card" (click)="goToFeature(feature.link)">
+          <ion-card-content>
+            <ion-icon [name]="feature.icon" size="large"></ion-icon>
+            <h3>{{ feature.title }}</h3>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

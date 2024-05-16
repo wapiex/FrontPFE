@@ -1,0 +1,54 @@
+.logo {
+    width: 100px;
+    height: 100px;
+    margin: 20px auto;
+    border-radius: 50%; /* Ajoute une bordure arrondie */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* Ajoute une ombre douce */
+}
+
+ion-label {
+    margin: 10px;
+    font-size: 1.4em; /* Augmente la taille de la police */
+}
+.clear-logo {
+    opacity: 0.8; /* Ajustez l'opacité selon votre préférence */
+    border-radius: 0; /* Retirez la bordure arrondie */
+    width: 80%; /* Définit la largeur du logo à 80% de la largeur de son conteneur parent */
+    height: auto; /* Ajuste automatiquement la hauteur pour maintenir les proportions */
+    max-width: 300px; /* Définit une largeur maximale pour le logo */
+}
+
+
+ion-input {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px; /* Ajoute une bordure arrondie */
+    transition: border-color 0.3s ease; /* Ajoute une transition pour le changement de couleur de la bordure */
+}
+
+ion-input:focus {
+    border-color: #000; /* Change la couleur de la bordure au focus */
+}
+
+ion-button {
+    margin: 10px;
+    padding: 10px 20px; /* Ajoute un espacement vertical et horizontal */
+    background-color: #fefafa;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease; /* Ajoute une transition pour le changement de couleur de fond */
+}
+
+ion-button:hover {
+    background-color: #ccc; /* Change la couleur de fond au survol */
+}
+
+ion-footer {
+    background-color: #ccc;
+}
+#togglePassword {
+    cursor: pointer;
+  }
+  
