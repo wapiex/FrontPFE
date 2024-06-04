@@ -1,13 +1,75 @@
-ion-card {
-    margin-top: 10px;
-  
-    ion-card-header {
-      background-color: #3B7DDD; // Changez selon votre palette de couleurs
-      color: white;
-    }
-  
-    ion-card-content {
-      padding: 10px;
-    }
-  }
-  
+:root {
+  --ion-color-secondary: #f4f4f8;
+}
+
+ion-header {
+  text-align: center;
+}
+
+ion-menu-button {
+  font-size: 1.2em;
+  color: white;
+}
+
+ion-content {
+  --background: var(--ion-color-secondary);
+}
+
+.card-item {
+  margin: 10px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: white;
+  border-radius: 15px 15px 0 0;
+  padding: 10px;
+}
+
+.card-info {
+  padding: 10px;
+  font-size: 0.9em;
+}
+
+.card-info p {
+  margin: 5px 0;
+}
+
+.active-status {
+  color: green;
+  font-weight: bold;
+}
+
+.inactive-status {
+  color: red;
+  font-weight: bold;
+}
+
+.toggle-button {
+  margin: 20px;
+  --background: #007bff; /* Couleur de fond du bouton */
+  --color: white; /* Couleur du texte du bouton */
+  --border-radius: 10px; /* Arrondir les coins du bouton */
+  --box-shadow: none; /* Supprimer l'ombre du bouton */
+}
+
+.request-form {
+  margin: 10px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.request-form ion-card-header {
+  color: white;
+  border-radius: 15px 15px 0 0;
+  text-align: center;
+}
+
+ion-item {
+  margin: 10px 0;
+}

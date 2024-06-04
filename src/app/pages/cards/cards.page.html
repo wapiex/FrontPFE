@@ -12,26 +12,29 @@
 <ion-content>
   <!-- Liste des cartes existantes -->
   <ion-list>
-    <ion-card *ngFor="let card of cards">
+    <ion-card *ngFor="let card of cards" class="card-item">
       <ion-card-header>
-        <ion-card-title>{{ card.typeCarte }} - {{ card.numCarte }}</ion-card-title>
+        <ion-card-title>{{ card.typeCarte }}</ion-card-title>
+        <ion-card-subtitle>{{ card.numCarte }}</ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
-        <p>Nom: {{ card.nom }}</p>
-        <p>Prénom: {{ card.prenom }}</p>
-        <p>Date d'Expiration: {{ card.dateExpiration }}</p>
-        <p>Statut: {{ card.statut }}</p>
+        <div class="card-info">
+          <p><strong>Nom:</strong> {{ card.nom }}</p>
+          <p><strong>Prénom:</strong> {{ card.prenom }}</p>
+          <p><strong>Date d'Expiration:</strong> {{ card.dateExpiration }}</p>
+          <p><strong>Statut:</strong> <span [ngClass]="{'active-status': card.statut === 'Active', 'inactive-status': card.statut !== 'Active'}">{{ card.statut }}</span></p>
+        </div>
       </ion-card-content>
     </ion-card>
   </ion-list>
 
   <!-- Bouton pour afficher/masquer le formulaire de demande -->
-  <ion-button expand="full" (click)="toggleForm()">
+  <ion-button expand="full" (click)="toggleForm()" class="toggle-button">
     {{ showForm ? 'Annuler' : 'Demander une Nouvelle Carte' }}
   </ion-button>
 
   <!-- Formulaire de demande de carte -->
-  <ion-card *ngIf="showForm">
+  <ion-card *ngIf="showForm" class="request-form">
     <ion-card-header>
       <ion-card-title>Demandez une Carte</ion-card-title>
     </ion-card-header>
@@ -39,94 +42,107 @@
       <form [formGroup]="cardRequestForm">
         <ion-item>
           <ion-label position="floating">Numéro de Compte</ion-label>
-          <ion-input formControlName="NumDeCompte" type="number" ></ion-input>
-      </ion-item>      
+          <ion-input formControlName="NumDeCompte" type="number"></ion-input>
+          <ion-note slot="error" *ngIf="cardRequestForm?.get('NumDeCompte')?.hasError('pattern')">Le numéro de compte doit être composé de 9 chiffres.</ion-note>
+        </ion-item>
         <ion-item>
-          <ion-select formControlName="TypeCarte" label="Type de Carte">
+          <ion-label position="floating">Type de Carte</ion-label>
+          <ion-select formControlName="TypeCarte">
             <ion-select-option value="Visa Electron Internationale">Visa Electron Internationale</ion-select-option>
             <ion-select-option value="MasterCard Gold Internationale">MasterCard Gold Internationale</ion-select-option>
           </ion-select>
+          <ion-note slot="error" *ngIf="cardRequestForm?.get('TypeCarte')?.hasError('required')">Ce champ est obligatoire.</ion-note>
         </ion-item>
-
         <ion-item>
-          <ion-input formControlName="Nom" type="text" label="Nom"></ion-input>
+          <ion-label position="floating">Nom</ion-label>
+          <ion-input formControlName="Nom" type="text"></ion-input>
+          <ion-note slot="error" *ngIf="cardRequestForm?.get('Nom')?.hasError('pattern')">Le nom ne doit contenir que des lettres.</ion-note>
         </ion-item>
-
-
-       
         <ion-item>
-          <ion-input formControlName="Prenoms" type="text" label="Prénom"></ion-input>
+          <ion-label position="floating">Prénom</ion-label>
+          <ion-input formControlName="Prenoms" type="text"></ion-input>
+          <ion-note slot="error" *ngIf="cardRequestForm?.get('Prenoms')?.hasError('pattern')">Le prénom ne doit contenir que des lettres.</ion-note>
         </ion-item>
-
         <ion-item>
-          <ion-input formControlName="Profession" type="text" label="Profession"></ion-input>
+          <ion-label position="floating">Profession</ion-label>
+          <ion-input formControlName="Profession" type="text"></ion-input>
+          <ion-note slot="error" *ngIf="cardRequestForm?.get('Profession')?.hasError('pattern')">La profession ne doit contenir que des lettres.</ion-note>
         </ion-item>
-
         <ion-item>
-          <ion-input formControlName="Adresse" type="text" label="Adresse"></ion-input>
+          <ion-label position="floating">Adresse</ion-label>
+          <ion-input formControlName="Adresse" type="text"></ion-input>
         </ion-item>
-
         <ion-item>
-          <ion-input formControlName="Ville" type="text" label="Ville"></ion-input>
+          <ion-label position="floating">Ville</ion-label>
+          <ion-input formControlName="Ville" type="text"></ion-input>
+          <ion-note slot="error" *ngIf="cardRequestForm?.get('Ville')?.hasError('pattern')">La ville ne doit contenir que des lettres.</ion-note>
         </ion-item>
-
         <ion-item>
-          <ion-input formControlName="CodePostal" type="text" label="Code Postal"></ion-input>
+          <ion-label position="floating">Code Postal</ion-label>
+          <ion-input formControlName="CodePostal" type="text"></ion-input>
+          <ion-note slot="error" *ngIf="cardRequestForm?.get('CodePostal')?.hasError('pattern')">Le code postal ne doit contenir que des chiffres.</ion-note>
         </ion-item>
-
         <ion-item>
-          <ion-input formControlName="Telephone" type="text" label="Téléphone"></ion-input>
+          <ion-label position="floating">Téléphone</ion-label>
+          <ion-input formControlName="Telephone" type="text"></ion-input>
+          <ion-note slot="error" *ngIf="cardRequestForm?.get('Telephone')?.hasError('pattern')">Le téléphone ne doit contenir que des chiffres.</ion-note>
         </ion-item>
-
         <ion-item>
-          <ion-input formControlName="Mobile" type="text" label="Mobile"></ion-input>
+          <ion-label position="floating">Mobile</ion-label>
+          <ion-input formControlName="Mobile" type="text"></ion-input>
+          <ion-note slot="error" *ngIf="cardRequestForm?.get('Mobile')?.hasError('pattern')">Le mobile ne doit contenir que des chiffres.</ion-note>
         </ion-item>
-
         <ion-item>
-          <ion-input formControlName="TypeIdentite" type="text" label="Type d'Identité"></ion-input>
+          <ion-label position="floating">Type d'Identité</ion-label>
+          <ion-input formControlName="TypeIdentite" type="text"></ion-input>
         </ion-item>
-
         <ion-item>
-          <ion-input formControlName="NumeroIdentite" type="text" label="Numéro d'Identité"></ion-input>
+          <ion-label position="floating">Numéro d'Identité</ion-label>
+          <ion-input formControlName="NumeroIdentite" type="text"></ion-input>
+          <ion-note slot="error" *ngIf="cardRequestForm?.get('NumeroIdentite')?.hasError('pattern')">Le numéro d'identité ne doit contenir que des chiffres.</ion-note>
         </ion-item>
-
         <ion-item>
-          <ion-label position="floating">Date de Délivrance de l'Identité</ion-label>
-          <ion-datetime formControlName="DateDelivranceIdentite"></ion-datetime>
+          <ion-label >Date de Délivrance de l'Identité</ion-label>
+          <ion-input formControlName="DateDelivranceIdentite" type="date"></ion-input>
         </ion-item>
-
         <ion-item>
-          <ion-input formControlName="RevenuMensuelNet" type="number" label="Revenu Mensuel Net"></ion-input>
+          <ion-label position="floating">Revenu Mensuel Net</ion-label>
+          <ion-input formControlName="RevenuMensuelNet" type="number"></ion-input>
+          <ion-note slot="error" *ngIf="cardRequestForm?.get('RevenuMensuelNet')?.hasError('pattern')">Le revenu mensuel ne doit contenir que des chiffres.</ion-note>
         </ion-item>
-
         <ion-item>
-          <ion-input formControlName="SoldeCompte" type="number" label="Solde Compte"></ion-input>
+          <ion-label position="floating">Solde Compte</ion-label>
+          <ion-input formControlName="SoldeCompte" type="number"></ion-input>
+          <ion-note slot="error" *ngIf="cardRequestForm?.get('SoldeCompte')?.hasError('pattern')">Le solde de compte ne doit contenir que des chiffres.</ion-note>
         </ion-item>
-
         <ion-item>
-          <ion-input formControlName="SoldeAVA" type="number" label="Solde AVA"></ion-input>
+          <ion-label position="floating">Solde AVA</ion-label>
+          <ion-input formControlName="SoldeAVA" type="number"></ion-input>
+          <ion-note slot="error" *ngIf="cardRequestForm?.get('SoldeAVA')?.hasError('pattern')">Le solde AVA ne doit contenir que des chiffres.</ion-note>
         </ion-item>
-
         <ion-item>
-          <ion-input formControlName="MouvementAnnuel" type="number" label="Mouvement Annuel"></ion-input>
+          <ion-label position="floating">Mouvement Annuel</ion-label>
+          <ion-input formControlName="MouvementAnnuel" type="number"></ion-input>
+          <ion-note slot="error" *ngIf="cardRequestForm?.get('MouvementAnnuel')?.hasError('pattern')">Le mouvement annuel ne doit contenir que des chiffres.</ion-note>
         </ion-item>
-
         <ion-item>
-          <ion-select formControlName="CotePersonalisation" label="Côte de Personnalisation">
+          <ion-label position="floating">Côte de Personnalisation</ion-label>
+          <ion-select formControlName="CotePersonalisation">
             <ion-select-option value="A">A</ion-select-option>
             <ion-select-option value="B">B</ion-select-option>
             <ion-select-option value="C">C</ion-select-option>
           </ion-select>
         </ion-item>
-
         <ion-item>
-          <ion-input formControlName="PlafondHebdoDAB" type="number" label="Plafond Hebdo DAB"></ion-input>
+          <ion-label position="floating">Plafond Hebdo DAB</ion-label>
+          <ion-input formControlName="PlafondHebdoDAB" type="number"></ion-input>
+          <ion-note slot="error" *ngIf="cardRequestForm?.get('PlafondHebdoDAB')?.hasError('pattern')">Le plafond hebdo DAB ne doit contenir que des chiffres.</ion-note>
         </ion-item>
-
         <ion-item>
-          <ion-input formControlName="PlafondHebdoTPE" type="number" label="Plafond Hebdo TPE"></ion-input>
+          <ion-label position="floating">Plafond Hebdo TPE</ion-label>
+          <ion-input formControlName="PlafondHebdoTPE" type="number"></ion-input>
+          <ion-note slot="error" *ngIf="cardRequestForm?.get('PlafondHebdoTPE')?.hasError('pattern')">Le plafond hebdo TPE ne doit contenir que des chiffres.</ion-note>
         </ion-item>
-
         <ion-button type="submit" expand="block" (click)="submitRequest()" [disabled]="!cardRequestForm.valid">Envoyer la Demande</ion-button>
       </form>
     </ion-card-content>

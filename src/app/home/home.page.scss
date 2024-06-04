@@ -1,9 +1,17 @@
-/* Styles pour le logo dans l'en-tête */
-.header-logo {
-  height: 100px;
+/*:root {
+  --ion-color-primary: #005bac;
+  --ion-color-secondary: #f4f4f8;
 }
 
-/* Styles pour le message de bienvenue */
+ion-header {
+  background-color: var(--ion-color-primary);
+  text-align: center;
+}
+
+ion-menu-button {
+  font-size: 1.2em;
+  color: white;
+}
 .welcome-message h2 {
   font-size: 2rem;
   font-weight: normal;
@@ -12,7 +20,7 @@
   text-align: center;
 }
 
-/* Styles pour la carte de bienvenue */
+
 .welcome-card {
   background: linear-gradient(to right, #83a4d4, #b6fbff);
   color: #005288;
@@ -25,7 +33,7 @@
   --ion-item-background: #e6f7ff;
 }
 
-/* Styles spécifiques pour le titre et sous-titre de la carte de bienvenue */
+
 .welcome-card h2 {
   font-size: 1.8rem;
 }
@@ -35,34 +43,34 @@
   color: #007bff;
 }
 
-/* Styles pour la grille et les cartes de fonctionnalités */
+
 .feature-grid {
   --ion-grid-column-padding: 0;
   --ion-grid-padding: 0;
   margin-top: 32px;
 }
 
-/* Styles pour chaque colonne de la grille */
+
 .feature-grid ion-col {
   padding: 8px;
 }
-/* Styles pour les cartes de fonctionnalités */
 .feature-card {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #007bff; /* Bleu STB Bank */
-  color: white; /* Texte en blanc */
+  background-color: #007bff;
+  color: white; 
+  
   margin: 8px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s;
-  height: 100px; /* Hauteur fixe pour toutes les cartes */
+  height: 100px; 
 }
 
 .feature-card ion-card-content {
-  padding: 10px; /* Espace intérieur pour le contenu de la carte */
+  padding: 10px; 
 }
 
 .feature-card ion-icon {
@@ -71,34 +79,181 @@
 
 
 
-/* Styles pour le texte dans les cartes de fonctionnalités */
 .feature-card p {
   font-size: 1.1rem;
   margin: 0;
 }
-.feature-card:hover {
-  transform: translateY(-0.25rem);
-  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.2);
+
+ion-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-.modal-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.4); /* Black background with opacity */
+
+ion-icon {
+  margin-bottom: 8px;
+  font-size: 1.5em;
+}
+
+h2, h3, ion-label {
+  font-weight: 600;
+}
+
+ion-label {
+  font-size: 1em;
+}
+.about-us {
+  text-align: center;
+  padding: 10px;
+
+  h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+
+  p {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .social-links {
+    display: flex;
+    justify-content: center;
+
+    a {
+      margin: 0 10px;
+      color: inherit;
+      text-decoration: none;
+      font-size: 24px;
+    }
+  }
+}*/
+:root {
+  --ion-color-primary: #005bac;
+  --ion-color-secondary: #f4f4f8;
+}
+
+ion-header {
+  background-color: var(--ion-color-primary);
+  text-align: center;
+}
+
+ion-menu-button {
+  font-size: 1.2em;
+  color: white;
+}
+
+.welcome-message h2 {
+  font-size: 2rem;
+  font-weight: normal;
+  color: #000;
+  margin-bottom: 0.25rem;
+  text-align: center;
+}
+
+.welcome-card {
+  background: linear-gradient(to right, #83a4d4, #b6fbff);
+  color: #005288;
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  margin: 16px;
+  margin-bottom: 32px;
+  --ion-item-background: #e6f7ff;
+}
+
+.welcome-card h2 {
+  font-size: 1.8rem;
+}
+
+.welcome-card p {
+  font-size: 1.2rem;
+  color: #007bff;
+}
+
+.feature-grid {
+  --ion-grid-column-padding: 0;
+  --ion-grid-padding: 0;
+  margin-top: 32px;
+}
+
+.feature-grid ion-col {
+  padding: 8px;
+}
+
+.feature-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #007bff;
+  color: white;
+  margin: 8px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+  height: 100px;
+}
+
+.feature-card ion-card-content {
+  padding: 10px;
+}
+
+.feature-card ion-icon {
+  margin-bottom: 0.5rem;
+}
+
+.feature-card p {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+ion-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+ion-icon {
+  margin-bottom: 8px;
+  font-size: 1.5em;
+}
+
+h2, h3, ion-label {
+  font-weight: 600;
+}
+
+ion-label {
+  font-size: 1em;
+}
+
+.about-us {
+  text-align: center;
+  padding: 10px;
+}
+
+.about-us h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.about-us p {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.social-links {
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
-.virement-options {
-  background-color: white;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 90%;
-  max-width: 400px;
+.social-links a {
+  margin: 0 10px;
+  color: inherit;
+  text-decoration: none;
+  font-size: 24px;
 }
-
 

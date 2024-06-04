@@ -1,17 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { InitiateSingleTransferRoutingModule } from './initiate-single-transfer-routing.module';
-import { InitiateSingleTransferComponent } from './initiate-single-transfer.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Assurez-vous d'importer ReactiveFormsModule
 import { IonicModule } from '@ionic/angular';
+import { InitiateSingleTransferComponent } from './initiate-single-transfer.component';
+import { RouterModule, Routes } from '@angular/router';
 
+const routes: Routes = [
+  {
+    path: '',
+    component: InitiateSingleTransferComponent
+  }
+];
 
 @NgModule({
- declarations: [InitiateSingleTransferComponent],  // Declare the component
   imports: [
     CommonModule,
-    InitiateSingleTransferRoutingModule,
-    IonicModule, // Add IonicModule here
-  ]
+    FormsModule,
+    ReactiveFormsModule, // Ajoutez ReactiveFormsModule ici
+    IonicModule,
+    RouterModule.forChild(routes)
+  ],
+  declarations: [InitiateSingleTransferComponent]
 })
-export class InitiateSingleTransferModule { }
+export class InitiateSingleTransferModule {}

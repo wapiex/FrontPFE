@@ -1,19 +1,45 @@
-<ion-menu contentId="main-content">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>Menu Content</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content class="ion-padding">This is the menu content.</ion-content>
-</ion-menu>
-<div class="ion-page" id="main-content">
-  <ion-header>
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-title>Menu</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content class="ion-padding"> Tap the button in the toolbar to open the menu. </ion-content>
-</div>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/home">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Initiation de virement unitaire</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Virement unitaire</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Compte source</ion-label>
+        <ion-select [(ngModel)]="singleTransfer.NumCpt" required>
+          <ion-select-option *ngFor="let account of accounts" [value]="account.numcpt">
+            {{ account.numcpt }} - {{ account.nom }} {{ account.prenom }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Montant</ion-label>
+        <ion-input [(ngModel)]="singleTransfer.Montant" type="number" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Compte bénéficiaire</ion-label>
+        <ion-input [(ngModel)]="singleTransfer.CompteBeneficiaire" maxlength="9" pattern="[0-9]{9}" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Motif</ion-label>
+        <ion-select [(ngModel)]="singleTransfer.Motif" required>
+          <ion-select-option value="Salaire">Salaire</ion-select-option>
+          <ion-select-option value="Facture">Facture</ion-select-option>
+          <ion-select-option value="Paiement fournisseur">Paiement fournisseur</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-button expand="full" (click)="submitSingleTransfer()">Soumettre</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

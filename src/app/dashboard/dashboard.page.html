@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/home">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Tableau de Bord</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <div class="card mb-4">
+          <div class="card-header">Virements Validés</div>
+          <div class="card-body">
+            <canvas id="validatedTransfersChart"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6">
+        <div class="card mb-4">
+          <div class="card-header">Virements Annulés</div>
+          <div class="card-body">
+            <canvas id="cancelledTransfersChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="card mb-4">
+          <div class="card-header">Pourcentage des Virements</div>
+          <div class="card-body">
+            <canvas id="transfersPieChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

@@ -1,3 +1,55 @@
-<p>
-  validate-transfer works!
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/home">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Validation Virement</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let virement of virements">
+      <ion-label>
+        <h2>{{ virement.dateInitiation | date: 'short' }}</h2>
+        <p>Type: {{ virement.typeVirement }}</p>
+        <p>Montant: {{ virement.montant }}</p>
+        <p>Motif: {{ virement.motif }}</p>
+      </ion-label>
+      <ion-button (click)="viewDetails(virement)">Détails</ion-button>
+    </ion-item>
+  </ion-list>
+
+  <ion-card *ngIf="selectedVirement" id="detailsCard">
+    <ion-card-header>
+      <ion-card-title>Détails du Virement</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Compte à débiter</ion-label>
+        <ion-input [(ngModel)]="selectedVirement.numCpt" readonly></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Montant Total en chiffres</ion-label>
+        <ion-input [(ngModel)]="selectedVirement.montant" readonly></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Compte Destinataire</ion-label>
+        <ion-input [(ngModel)]="selectedVirement.compteBeneficiaire" readonly></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Temps d'initialisation</ion-label>
+        <ion-input [(ngModel)]="selectedVirement.dateInitiation" readonly></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Motif</ion-label>
+        <ion-input [(ngModel)]="selectedVirement.motif" readonly></ion-input>
+      </ion-item>
+
+      <ion-button color="success" (click)="validerVirement()">Valider</ion-button>
+      <ion-button color="danger" (click)="rejeterVirement()">Rejeter</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

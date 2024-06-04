@@ -11,7 +11,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class CardsPage implements OnInit {
   public cards: any[] = [];
   public showForm = false;
-  public cardRequestForm!: FormGroup; // Use non-null assertion
+  public cardRequestForm!: FormGroup;
 
   constructor(private http: HttpClient, private toastController: ToastController) {}
 
@@ -22,32 +22,40 @@ export class CardsPage implements OnInit {
 
   initializeForm() {
     this.cardRequestForm = new FormGroup({
-      NumDeCompte: new FormControl(null, Validators.required),
+      NumDeCompte: new FormControl(null, [
+        Validators.required,
+        Validators.pattern('^[0-9]{9}$')  // 9 digits pattern
+      ]),
       TypeCarte: new FormControl('', Validators.required),
-      Nom: new FormControl('', Validators.required),
-      Prenoms: new FormControl('', Validators.required),
-      Profession: new FormControl(''),
+      Nom: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[a-zA-ZÀ-ÿ\' -]+$')  // Letters and some special characters
+      ]),
+      Prenoms: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[a-zA-ZÀ-ÿ\' -]+$')  // Letters and some special characters
+      ]),
+      Profession: new FormControl('', Validators.pattern('^[a-zA-ZÀ-ÿ\' -]+$')),
       Adresse: new FormControl(''),
-      Ville: new FormControl(''),
-      CodePostal: new FormControl(''),
-      Telephone: new FormControl(''),
-      Mobile: new FormControl(''),
+      Ville: new FormControl('', Validators.pattern('^[a-zA-ZÀ-ÿ\' -]+$')),
+      CodePostal: new FormControl('', Validators.pattern('^[0-9]+$')),
+      Telephone: new FormControl('', Validators.pattern('^[0-9]+$')),
+      Mobile: new FormControl('', Validators.pattern('^[0-9]+$')),
       TypeIdentite: new FormControl(''),
-      NumeroIdentite: new FormControl(''),
+      NumeroIdentite: new FormControl('', Validators.pattern('^[0-9]+$')),
       DateDelivranceIdentite: new FormControl(''),
-      RevenuMensuelNet: new FormControl(null),
-      SoldeCompte: new FormControl(null),
-      SoldeAVA: new FormControl(null),
-      MouvementAnnuel: new FormControl(null),
+      RevenuMensuelNet: new FormControl(null, Validators.pattern('^[0-9]+$')),
+      SoldeCompte: new FormControl(null, Validators.pattern('^[0-9]+$')),
+      SoldeAVA: new FormControl(null, Validators.pattern('^[0-9]+$')),
+      MouvementAnnuel: new FormControl(null, Validators.pattern('^[0-9]+$')),
       CotePersonalisation: new FormControl(''),
-      PlafondHebdoDAB: new FormControl(null),
-      PlafondHebdoTPE: new FormControl(null)
+      PlafondHebdoDAB: new FormControl(null, Validators.pattern('^[0-9]+$')),
+      PlafondHebdoTPE: new FormControl(null, Validators.pattern('^[0-9]+$'))
     });
-}
-
+  }
 
   loadCardsFromStorage() {
-    const cardsData = localStorage.getItem('cardsInfo');
+    const cardsData = localStorage.getItem('cards');
     if (cardsData) {
       this.cards = JSON.parse(cardsData);
     }
@@ -63,24 +71,24 @@ export class CardsPage implements OnInit {
   async submitRequest() {
     const url = 'http://localhost:5053/api/submitCardRequest';
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    // Préparation des données pour correspondre au format attendu par l'API
     const formData = {
       ...this.cardRequestForm.value,
-      ompteId: this.cardRequestForm.value.NumDeCompte
-  };
-  delete formData.numDeCompte; // Supprimez l'ancienne clé si nécessaire
-  console.log('Final data sent:', formData); // Affiche les données finales envoyées
+      compteId: this.cardRequestForm.value.NumDeCompte
+    };
+    delete formData.NumDeCompte;
     if (this.cardRequestForm.valid) {
       this.http.post(url, formData, { headers: headers }).subscribe(
         async response => {
-            await this.presentToast('Demande soumise avec succès!', 'success');
-            this.showForm = false;
-            this.cardRequestForm.reset();
+          await this.presentToast('Demande soumise avec succès!', 'success');
+          this.showForm = false;
+          this.cardRequestForm.reset();
         },
         async error => {
           await this.presentToast('Erreur lors de la soumission de la demande: ' + (error.error.message || 'Unknown error'), 'danger');
         }
       );
+    } else {
+      await this.presentToast('Veuillez remplir tous les champs correctement.', 'danger');
     }
   }
 
@@ -94,3 +102,4 @@ export class CardsPage implements OnInit {
     toast.present();
   }
 }
+

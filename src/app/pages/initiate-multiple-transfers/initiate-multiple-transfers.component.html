@@ -1,3 +1,35 @@
-<p>
-  initiate-multiple-transfers works!
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/home">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Initiation Virements Multiples</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="submitMultipleTransfer()" enctype="multipart/form-data">
+    <ion-item>
+      <ion-label>Type de Virement</ion-label>
+      <ion-input [(ngModel)]="multipleTransfer.typeVirement" name="typeVirement" value="multiple" readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Compte Source</ion-label>
+      <ion-select [(ngModel)]="multipleTransfer.numCpt" name="numCpt" required>
+        <ion-select-option *ngFor="let account of accounts" [value]="account.numcpt">
+          {{ account.numcpt }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Fichier CSV des Bénéficiaires</ion-label>
+      <input type="file" (change)="onFileChange($event)" required />
+    </ion-item>
+
+    <ion-button expand="full" type="submit">Soumettre</ion-button>
+  </form>
+</ion-content>

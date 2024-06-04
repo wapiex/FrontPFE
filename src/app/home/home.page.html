@@ -1,29 +1,70 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title class="header-title">
-      <img src="assets/logo.png" alt="Logo" class="header-logo">
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-menu contentId="main-content">
+  <ion-header>
+    <ion-toolbar color="secondary">
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <ion-list>
+      <ion-item (click)="logout()">
+        <ion-icon slot="start" name="log-out-outline"></ion-icon>
+        <ion-label>Se Deconnecter </ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  <ion-footer class="ion-padding">
+    <div class="about-us">
+      <h3>a propos nous </h3>
+      <p>bienvenue chez STB Corporate Banking.</p>
+      <div class="social-links">
+        <a href="https://www.facebook.com/STB" target="_blank">
+          <ion-icon name="logo-facebook"></ion-icon>
+        </a>
+        <a href="https://www.instagram.com/STB" target="_blank">
+          <ion-icon name="logo-instagram"></ion-icon>
+        </a>
+        <a href="https://www.stb.com.tn" target="_blank">
+          <ion-icon name="globe-outline"></ion-icon>
+        </a>
+        <a href="mailto:reclamation@stb.com.tn">
+          <ion-icon name="mail-outline"></ion-icon>
+        </a>
+      </div>
+    </div>
+  </ion-footer>
+</ion-menu>
 
-<ion-content>
-  <ion-card class="welcome-card">
-    <ion-card-content>
-      <h2>Bienvenue, {{ username }}</h2>
-      <p>CLIENT CORPORATIF</p>
-    </ion-card-content>
-  </ion-card>
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>
+        <img src="assets/logo.png" alt="Corporate Logo" class="header-logo">
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
 
-  <ion-grid class="feature-grid">
-    <ion-row>
-      <ion-col size="6" *ngFor="let feature of features">
-        <ion-card class="feature-card" (click)="goToFeature(feature.link)">
-          <ion-card-content>
-            <ion-icon [name]="feature.icon" size="large"></ion-icon>
-            <h3>{{ feature.title }}</h3>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-</ion-content>
+  <ion-content class="ion-padding">
+    <ion-card class="welcome-card">
+      <ion-card-content>
+        <h2>Bienvenue, {{ username }}</h2>
+        <p> Client Corporate </p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-grid class="feature-grid">
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="12" *ngFor="let feature of features">
+          <ion-card class="feature-card" (click)="goToFeature(feature.link)">
+            <ion-card-content class="ion-text-center">
+              <ion-icon [name]="feature.icon" size="large"></ion-icon>
+              <h3>{{ feature.title }}</h3>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+</div>

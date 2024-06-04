@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-balance',
@@ -6,22 +7,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./balance.page.scss'],
 })
 export class BalancePage implements OnInit {
-  accountInfo: any;
-  router: any;
-
-  constructor() {}
+  accountsInfo: any[] = [];
+  
+  constructor(private router: Router) {}
 
   ngOnInit() {
-    this.getAccountInfo();
+    this.getAccountsInfo();
   }
 
-  getAccountInfo() {
-    const accountData = localStorage.getItem('accountInfo');
-    if (accountData) {
-      this.accountInfo = JSON.parse(accountData);
+  getAccountsInfo() {
+    const accountsData = localStorage.getItem('accounts');
+    //console.log('Accounts data from localStorage:', accountsData); // Debugging line
+    if (accountsData) {
+      this.accountsInfo = JSON.parse(accountsData);
+      //console.log('Parsed accounts info:', this.accountsInfo); // Debugging line
     } else {
       // Rediriger l'utilisateur s'il n'y a pas d'informations de compte
-      // Ici, vous pouvez rediriger vers la page de connexion ou afficher une alerte
+      this.router.navigate(['/login']);
       console.error('No account information available.');
     }
   }
@@ -29,5 +31,4 @@ export class BalancePage implements OnInit {
   getBalanceColor(balance: number): string {
     return balance < 0 ? 'negative' : 'positive';
   }
- 
 }
